@@ -73,8 +73,8 @@ def main():
                         stored_time = datetime.fromisoformat(record["stored_at"])
                         age_days = (now - stored_time).days
                         print(f"{idx}: {record['password']} (Stored {age_days} days ago)")
-                        if age_days > 90:
-                            print(f"   -> Consider changing this password; it's over 90 days old.")
+                        if age_days > 1:
+                            print(f"   -> Consider changing this password; it's over 1 days old.")
                     break
                 except Exception as e:
                     attempts -= 1

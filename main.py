@@ -6,7 +6,7 @@ from utils.analyzer import analyze_password
 from utils.generator import generate_strong_password
 from utils.storage import store_password, retrieve_passwords
 from utils.master_password import setup_master_password, verify_master_password
-from datetime import datetime
+from datetime import datetime, timezone
 
 def display_menu():
     print("\nWelcome! What would you like to do")
@@ -57,8 +57,6 @@ def main():
 
         elif choice == "r":
             # Retrieve stored passwords
-            from datetime import datetime, timezone
-            from getpass import getpass
 
             master_password = getpass("Enter your master password: ").strip()
             attempts = 3

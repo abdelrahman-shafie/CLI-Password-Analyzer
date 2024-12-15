@@ -33,14 +33,15 @@ def display_help():
     print("   - Suggests improvements to make your password stronger.")
     print()
     print(f"{Fore.YELLOW}(G){Style.RESET_ALL} Generate a strong password:")
-    print("   - Automatically generates a secure and strong password for you.")
+    print("   - Generates a secure and strong password for you.")
+    print("   - Automatically copies generated password into your clipboard and deletes it after 30 seconds.")
     print()
     print(f"{Fore.YELLOW}(S){Style.RESET_ALL} Store a password:")
-    print("   - Securely stores a password after verifying your master password.")
+    print("   - Securely stores your desired password after verifying your master password.")
     print()
     print(f"{Fore.YELLOW}(R){Style.RESET_ALL} Retrieve stored passwords:")
     print("   - Lists stored passwords along with their age in days.")
-    print("   - Warns you if any password is older than 1 day.")
+    print("   - Warns you if any password is older than 183 days.")
     print()
     print(f"{Fore.YELLOW}(H){Style.RESET_ALL} Help:")
     print("   - Displays this help guide to explain each option.")
@@ -133,8 +134,8 @@ def main():
                         stored_time = datetime.fromisoformat(record["stored_at"])
                         age_days = (now - stored_time).days
                         print(f"{idx}: {record['password']} (Stored {age_days} days ago)")
-                        if age_days > 1:
-                            print(Fore.YELLOW + f"   -> Consider changing this password; it's over 90 days old.")
+                        if age_days > 183:
+                            print(Fore.YELLOW + f"   -> Consider changing this password; it's over 183 days old.")
                     break  # Exit loop if successful retrieval
 
                 except Exception as e:

@@ -1,15 +1,31 @@
 import string
 import random
+import pyperclip
+import threading
+import time
 
+def clear_clipboard_after_delay(delay: int):
+    """Clears the clipboard after a specified delay (in seconds)."""
+    time.sleep(delay)
+    pyperclip.copy("")  # Clear clipboard
 
 def generate_strong_password():
+    """
+    Generates a strong password, copies it to the clipboard,
+    and clears the clipboard asynchronously after 30 seconds.
+    """
     length = 16
-    # Include a mix of character sets
     charset = string.ascii_lowercase + string.ascii_uppercase + string.digits + string.punctuation
-
-    # Use SystemRandom for better randomness
     secure_random = random.SystemRandom()
-
-    # Generate the password
     password = ''.join(secure_random.choice(charset) for _ in range(length))
+
+    # Copy password to clipboard
+    try:
+        pyperclip.copy(password)
+        print("Password has been securely copied to the clipboard! It will be cleared in 30 seconds.")
+        # Start a thread to clear the clipboard after 30 seconds
+        threading.Thread(target=clear_clipboard_after_delay, args=(30,), daemon=True).start()
+    except Exception as e:
+        print("Failed to copy password to clipboard:", e)
+
     return password

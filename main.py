@@ -37,8 +37,8 @@ def main():
 
         elif choice == "g":
             # Generate a strong password
+            print("Generating a strong password...")
             password = generate_strong_password()
-            print("Generated password:", password)
 
         elif choice == "s":
             # Store a password

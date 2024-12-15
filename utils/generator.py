@@ -3,6 +3,7 @@ import random
 import pyperclip
 import threading
 import time
+from colorama import init, Fore, Style
 
 def clear_clipboard_after_delay(delay: int):
     """Clears the clipboard after a specified delay (in seconds)."""
@@ -22,7 +23,8 @@ def generate_strong_password():
     # Copy password to clipboard
     try:
         pyperclip.copy(password)
-        print("Password has been securely copied to the clipboard! It will be cleared in 30 seconds.")
+        print(Fore.GREEN + "Password has been securely copied to the clipboard!")
+        print(Fore.YELLOW + "It will be cleared in 30 seconds.")
         # Start a thread to clear the clipboard after 30 seconds
         threading.Thread(target=clear_clipboard_after_delay, args=(30,), daemon=True).start()
     except Exception as e:

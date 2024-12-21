@@ -1,6 +1,7 @@
 import string
 from utils.entropy import calculate_entropy
 
+# Function to load breached passwords from a text file
 def load_breached_list():
     try:
         with open('breached_passwords.txt', 'r', encoding='utf-8') as f:
@@ -8,6 +9,7 @@ def load_breached_list():
     except FileNotFoundError:
         return set()
 
+# Function to load dictionary words from a text file
 def load_dictionary_words():
     try:
         with open('dictionary_words.txt', 'r', encoding='utf-8') as f:
@@ -15,6 +17,7 @@ def load_dictionary_words():
     except FileNotFoundError:
         return set()
 
+# Function to load common patterns from a text file
 def load_common_patterns():
     try:
         with open('common_patterns.txt', 'r', encoding='utf-8') as f:
@@ -26,6 +29,8 @@ BREACHED = load_breached_list()
 DICTIONARY = load_dictionary_words()
 PATTERNS = load_common_patterns()
 
+# Function to find matches between a password and a word list
+# Returns a list of tuples containing the matched word in the password
 def find_matches(password, word_list):
     matches = []
     for word in word_list:
